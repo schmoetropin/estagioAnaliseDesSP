@@ -17,26 +17,39 @@
         }
     
         public function perg3(){
-            $num = rand(150, 850);
-            $arr = [
-                0,rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),0,
-                0,rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),0,
-                0,rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),0,
-                0,rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),rand(150, 850),0,
-                0,rand(150, 850),
-            ];
+            $xml = simplexml_load_file('valores.xml');
+            $json = json_encode($xml);
+            $obj = json_decode($json);
+            $indexes = $obj->row;
+            $arr = [];
+            for($i = 0; $i < count($indexes); $i++){
+                array_push($arr, $indexes[$i]->valor);
+            }
+            
             $med = array_sum($arr)/count($arr);
             $arrMais = [];
             for($i = 0;$i < count($arr); $i++){
                 if($arr[$i] > $med)
                     array_push($arrMais,$arr[$i]);
             }
-            echo 'Mininmo: '.min(array_filter($arr)).'<br/>';
-            echo 'Maximo: '.max(array_filter($arr)).'<br/>';
+            
+            $arrSemZero = [];
+            for($i = 0;$i < count($arr); $i++){
+                if($arr[$i] != 0)
+                    array_push($arrSemZero,$arr[$i]);
+            }
+
+            echo 'Mininmo: '.min($arrSemZero).'<br/>';
+            echo 'Maximo: '.max($arr).'<br/>';
             echo 'Media: '.$med.'<br/>';
             echo 'Dias acima da media: '.count($arrMais).'<br/>';
-            echo 'Acima da media: '.json_encode($arrMais).'<br/>';
-            echo 'Todos os dias: '.json_encode($arr).'<br/>';
+            echo 'Acima da media: <pre>'.json_encode($arrMais).'</pre><br/>';
+            echo 'Todos os dias: <pre>'.$json.'</pre><br/>';
+        }
+
+        private function verEmXML($arr){
+            
+
         }
     
         public function perg4(){
