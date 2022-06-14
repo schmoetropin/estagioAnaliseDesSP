@@ -1,0 +1,43 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+ul{ list-style: none;}
+
+body{ background-color: #DCDCDC;}
+
+.titulo{
+    background-color: #222;
+    color: #fff;
+    height: 40px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    line-height: 40px;
+    text-align: center;
+}
+
+.espacoTitPerg{ height: 60px;}
+
+.pergunta{
+    border: 1px solid #888;
+    border-radius: 6px;
+    width: 90%;
+    margin: 10px 0 0 5%;
+    background-color: #fff;
+    padding: 10px;
+    font-size: 14px;
+}
+.pergunta:hover{ border-color: #222;}
+
+.divXml{
+    border: 1px solid #222;
+    border-radius: 4px;
+    padding: 4px;
+    height: 100px;
+    width: 60%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}

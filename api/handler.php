@@ -1,15 +1,15 @@
 <?php
-    require_once('Perguntas.php');
+    require_once('classes/Perguntas.php');
     $perg = new Perguntas();
 
     if(isset($_POST['pergunta2'])){
         echo 'Resposta:<br/><br/>';
-        $num = $_POST['pergunta2'];
+        $num = strip_tags($_POST['pergunta2']);
         $rep2 = $perg->perg2($num);
         if(in_array($num,$rep2))
-            echo 'pertence<br />';
+            echo $num.' pertence<br />';
         else
-            echo 'não pertence<br />';
+            echo $num.' não pertence<br />';
         echo json_encode($rep2);
     }
     
@@ -23,6 +23,8 @@
     
     if(isset($_POST['reverter'])){
         echo 'Resposta:<br/><br/>';
-        $perg->perg5($_POST['reverter']).'<br/>';
+        $palavra = strip_tags($_POST['reverter']);
+        echo $palavra.'<br/>';
+        $perg->perg5($palavra).'<br/>';
     }
 ?>

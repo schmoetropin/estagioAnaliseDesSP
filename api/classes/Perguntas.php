@@ -17,7 +17,7 @@
         }
     
         public function perg3(){
-            $xml = simplexml_load_file('valores.xml');
+            $xml = simplexml_load_file('../data/valores.xml');
             $json = json_encode($xml);
             $obj = json_decode($json);
             $indexes = $obj->row;
@@ -37,19 +37,23 @@
             for($i = 0;$i < count($arr); $i++){
                 if($arr[$i] != 0)
                     array_push($arrSemZero,$arr[$i]);
-            }
-
-            echo 'Mininmo: '.min($arrSemZero).'<br/>';
-            echo 'Maximo: '.max($arr).'<br/>';
-            echo 'Media: '.$med.'<br/>';
-            echo 'Dias acima da media: '.count($arrMais).'<br/>';
-            echo 'Acima da media: <pre>'.json_encode($arrMais).'</pre><br/>';
-            echo 'Todos os dias: <pre>'.$json.'</pre><br/>';
-        }
-
-        private function verEmXML($arr){
-            
-
+            }?>
+            Mininmo: <?php echo min($arrSemZero);?><br/>
+            Maximo: <?php echo max($arr);?><br/>
+            Media: <?php echo $med;?><br/>
+            Dias acima da media: <?php echo count($arrMais);?><br/>
+            Acima da media: 
+            <div class="divXml">
+                <pre><?php
+                    print_r($arrMais);?>
+                </pre>
+            </div><br/>
+            Todos os dias: 
+            <div class="divXml">
+                <pre><?php
+                    print_r($obj->row);?>
+                </pre>
+            </div><br/><?php
         }
     
         public function perg4(){
